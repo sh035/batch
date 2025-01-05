@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: batch
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://localhost:3306/batch?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        default_batch_fetch_size: 100
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  batch:
+    jdbc:
+      initialize-schema: always
+      table-prefix: batch_metadata.BATCH_
+    job:
+      enabled: false # 서버 재시작시 배치 자동실행 방지
