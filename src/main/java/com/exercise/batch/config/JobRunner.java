@@ -1,6 +1,5 @@
 package com.exercise.batch.config;
 
-import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -9,16 +8,19 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class TestDataGenerationRunner implements CommandLineRunner {
+public class JobRunner implements CommandLineRunner {
     private final JobLauncher jobLauncher;
     private final Job job;
 
+    // 매일 밤 12시에 실행
     @Override
+    @Scheduled(cron = "0 0 0 * * ?")
     public void run(String... args) throws Exception {
         try {
             JobParameters parameters = new JobParametersBuilder()
