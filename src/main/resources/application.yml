@@ -1,16 +1,21 @@
 spring:
   application:
     name: batch
-  datasource:
+  datasource-data:
     username: root
     password: 1234
-    url: jdbc:mysql://localhost:3306/batch?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
+    jdbc-url: jdbc:mysql://localhost:3306/batch?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  datasource-meta:
+    username: root
+    password: 1234
+    jdbc-url: jdbc:mysql://localhost:3306/meta_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
@@ -23,5 +28,6 @@ spring:
     jdbc:
       initialize-schema: always
       table-prefix: batch_metadata.BATCH_
+      schema: classpath:org/springframework/batch/core/schema-mysql.sql
     job:
       enabled: false # 서버 재시작시 배치 자동실행 방지

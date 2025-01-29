@@ -1,4 +1,4 @@
-package com.exercise.batch.member;
+package com.exercise.batch.entity.member;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
