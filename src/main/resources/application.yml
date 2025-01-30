@@ -27,7 +27,6 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
-      table-prefix: batch_metadata.BATCH_
       schema: classpath:org/springframework/batch/core/schema-mysql.sql
     job:
       enabled: false # 서버 재시작시 배치 자동실행 방지
